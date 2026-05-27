@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event Feedback Form</title>
+
+        <style>
+            body{
+                font-family: Arial,sans-serif;
+                background-color: #f2f2f2;
+            }
+
+            div{
+                width: 450px;
+                margin: 30px auto;
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px gray;
+            }
+
+            h2{
+                text-align: center;
+                color: darkblue;
+            }
+
+            input,
+            select,
+            textarea,
+            button{
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+
+            button{
+                background-color: blue;
+                color: white;
+                border: none;
+                cursor:pointer;
+            }
+            button:hover{
+                background-color: darkblue;
+            }
+            #imageBox{
+                width: 200px;
+                height: 150px;
+                display: block;
+                margin: 15px auto;
+                border: 3px solid black;
+            }
+
+            #phoneMsg,
+            #feeMsg,
+            #confirmMsg,
+            #charCount{
+                font-weight: bold;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div>
+
+            <h2>Event Feedback Form</h2>
+
+            <form onsubmit="submitForm(event)">
+
+                <!--Phone validation onblur-->
+                <input type="text"
+                id="phone"
+                placeholder="Enter phone number"
+                onblur="validatePhone()"
+                required>
+
+                <p id="phoneMsg"></p>
+
+                <!--Dropdown onchange-->
+                <select id="eventType" onchange="showFee()" required>
+                    <option value="">Select Event</option>
+                    <option value="100">Music - ₹100</option>
+                    <option value="200">Sports - ₹200</option>
+                    <option value="150">Food Festival - ₹150</option>
+                </select>
+
+                <p id="feeMsg"></p>
+
+                <!--Image ondblclick-->
+                <img id="imageBox"
+                src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a"
+                ondblclick="enlargeImage()"
+                alt="Event Image">
+
+                <!--Feedback textarea with key events-->
+                <textarea id="feedback"
+                placeholder="Write feedback..."
+                onkeyup="countChars()"></textarea>
+
+                <p id="charCount">Characters: 0</p>
+
+                <!--Submit button onclick-->
+                <button type="submit" onclick="showConfirmation()">Submit</button>
+
+                <p id="confirmMsg"></p>
+
+
+            </form>
+        </div>
+
+        <script>
+            //phone validation
+            function validatePhone(){
+                let phone=document.getElementById("phone").value;
+                let message=document.getElementById("phoneMsg");
+
+                if(phone.length==10 && !Nan(phone)){
+                    message.innerHTML="Valid phone number";
+                    message.style.color="green";
+                }
+                else{
+                    message.innerHTML="Invalid phone number";
+                    message.style.color="red";
+
+                }
+            }
+
+            //Show event fee
+            function showFee(){
+                let fee=document.getElementById("eventType").value;
+
+                if(fee!=""){
+                    document.getElementById("feeMsg").innerHTML="Event Fee: ₹"+fee;
+                }
+            }
+
+            //Submit confirmation
+            function showConfirmation(){
+                document.getElementById("confirmMsg").innerHTML="Feedback submitted successfully!";
+
+            }
+
+            //Double click image enlarge
+            function enlargeImage(){
+                let image=document.getElementById("imageBox");
+                image.style.width="300px";
+            }
+
+            //Character count
+            function countChars(){
+                let text=document.getElementById("feedback").value;
+                document.getElementById("charCount").innerHTML="Characters: "+text.length;
+
+            }
+
+            //Prevent page refresh
+            function submitForm(event){
+                event.preventDefault();
+
+            }
+        </script>
+    </body>
+</html>

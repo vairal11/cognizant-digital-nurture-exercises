@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation - Nearby Events</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        .container{
+            margin-top: 50px;
+        }
+
+        button{
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #output{
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Find Nearby Events</h2>
+
+        <!--Button-->
+        <button onclick="findLocation()">Find Nearby Events</button>    
+
+        <p id="output"></p>
+
+    </div>
+
+    <script>
+
+        function findLocation(){
+            const options={
+                enableHighAccuracy:true,
+                timeout:10000,
+                maximumAge:0
+            }
+
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(showPosition, showError, options);
+            }
+            else{
+                document.getElementById("output").innerHTML="Geolocation is not supported by this browser.";
+            }
+        }
+
+        //Success function
+        function showPosition(position){
+            let lat=position.coords.latitude;
+            let lon=position.coords.longitude;
+
+            document.getElementById("output").innerHTML="Latitude: "+lat+"<br>Longitude: "+lon;
+        }
+
+        //Error Handling
+        function showError(error){
+            switch(error.code){
+                case error.PERMISSION_DENIED:
+                    document.getElementById("output").innerHTML="User denied the request for Geolocation";
+                    break;
+
+                case error.TIMEOUT:
+                    document.getElementById("output").innerHTML="Request time out";
+                    break;
+                    
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById("output").innerHTML="Location information is unavailable.";
+                    break;    
+
+                default:
+                    document.getElementById("output").innerHTML="An unknown error occurered."    
+            }
+        }
+    </script>
+</body>
+</html>

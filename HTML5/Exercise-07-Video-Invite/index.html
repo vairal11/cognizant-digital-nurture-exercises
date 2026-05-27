@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Promo Video</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        .container{
+            margin-top: 40px;
+        }
+
+        video{
+            border: 3px solid black;
+            border-radius: 10 px;
+        }
+
+        #videoMsg{
+            color: green;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Community Event Promo Video</h2>
+
+        <!--Video Element-->
+        <video width="500" 
+        controls 
+        oncanplay="videoReady()">
+
+        <source src="sample-video.mp4" type="video/mp4">
+
+       
+    </video>
+
+    <p id="videoMsg"></p>
+
+    <!--Simple Form-->
+    <form>
+        <input type="text" placeholder="Enter your name">
+    </form>
+
+    </div>
+
+    <script>
+
+        //oncanplay event
+        function videoReady(){
+            document.getElementById("videoMsg").innerHTML="Video ready to play";
+        }
+
+        //onbeforeunload event
+        window.onbeforeunload=function(){
+            return "Are you sure you want to leave this page?"
+        }
+    </script>
+</body>
+
+</html>
