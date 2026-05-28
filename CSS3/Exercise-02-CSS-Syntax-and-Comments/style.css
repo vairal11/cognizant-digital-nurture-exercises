@@ -1,0 +1,31 @@
+/* General Page Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Heading Styles */
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+/* Style for main CTA button */
+.cta-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Paragraph Styles */
+p {
+  color: #555;
+  font-size: 16px;
+  text-align: center;
+}
