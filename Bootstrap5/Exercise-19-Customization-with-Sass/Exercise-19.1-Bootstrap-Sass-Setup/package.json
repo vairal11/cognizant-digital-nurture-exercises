@@ -1,0 +1,17 @@
+{
+  "name": "exercise-19-bootstrap-sass-setup",
+  "version": "1.0.0",
+  "description": "Bootstrap 5 Sass Customization Exercise",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass scss/custom.scss css/custom.css"
+  },
+  "author": "Kanchan",
+  "license": "ISC",
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "sass": "^1.100.0"
+  }
+}
